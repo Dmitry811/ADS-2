@@ -24,29 +24,29 @@ double calcItem(double x, uint16_t n) {
 }
 
 double expn(double x, uint16_t count) {
-    double ex = 1;
+    double exe = 1;
     for (uint16_t i = 1; i <= count; ++i) {
-        ex += calcItem(x, i);
+        exe += calcItem(x, i);
     }
-    return ex;
+    return exe;
 }
 
 double sinn(double x, uint16_t count) {
-    double iCount3 = 0;
     int chet = 1;
-    for (uint16_t i = 1; i <= count; i++) {
-        iCount3 += (i % 2 == 0 ? -1 : 1) * (pown(x, chet) / fact(chet));
-        chet += 2;
+    double iCount3 = 0;
+    for (uint16_t i = 1; i <= count*2; i += 2) {
+        iCount3 += (chet % 2 == 0 ? -1 : 1) * (calcItem(x, i));
+        chet++;
     }
     return iCount3;
 }
 
 double cosn(double x, uint16_t count) {
-    double iCount4 = 1;
-    int chet1 = 2;
-    for (uint16_t i = 1; i <= count; i++) {
-        iCount4 += (i % 2 == 0 ? 1 : -1) * (pown(x, chet1) / fact(chet1));
-        chet1 += 2;
+    double result = 1;
+    int chet1 = 1;
+    for (uint16_t i = 2; i < count*2; i += 2) {
+        result += (chet1 % 2 == 0 ? 1 : -1) * (calcItem(x, i));
+        chet1++;
     }
-    return iCount4;
+    return result;
 }
